@@ -1,7 +1,7 @@
 #pragma once
 #include "Header.h"
 
-
+/*
 Uzond::Users::Users(const Users& other) {
     Name = other.Name;
     Surname = other.Surname;
@@ -23,7 +23,7 @@ void Uzond::Users::show(Uzond program, short size_of_people)
     }
     cout << endl << endl;
 }
-
+*/
 Uzond::Uzond()
 {
     people = nullptr;
@@ -56,7 +56,7 @@ Uzond::~Uzond() {
         people = nullptr;
     }
 }
-
+/*
 void Uzond::setPeople(Users** people_) {
     if (people != nullptr) {
         for (int i = 0; i < size_Of_arr_peopls; i++) {
@@ -75,8 +75,8 @@ void Uzond::setPeople(Users** people_) {
         people = nullptr;
     }
 }
-
-void Uzond::createPeopleArray(int size_of_people, vector<string> arrOfNames, vector<string> arrOfSurnames) {
+*/
+void Uzond::createPeopleArray(int size_of_people, vector<string> arrOfNames, vector<string> arrOfSurnames, vector<string> arrOfNameKindergarten, vector<string> arrOfWork) {
     if (people != nullptr) {
         for (int i = 0; i < size_Of_arr_peopls; i++) {
             delete people[i];
@@ -87,17 +87,28 @@ void Uzond::createPeopleArray(int size_of_people, vector<string> arrOfNames, vec
     size_Of_arr_peopls = size_of_people;
     if (size_of_people > 0) {
         people = new Users * [size_of_people];
+        
         for (int i = 0; i < size_of_people; i++) {
-            string sex = rand_data(sex_);
+            bool is_child = rand() % 2;
+            string sex = rand_data(_sex);
             string name = arrOfNames[rand_data(sex)];
             string surname = arrOfSurnames[rand_data(sex)];
-            string year = rand_data(year_);
-            string piesel = rand_data(piesel_);
-            people[i] = new Users(name, surname, year, piesel, sex);
+            string year = rand_data(_year);
+            string piesel = rand_data(_piesel);
+            if (is_child) {
+                string Kindergarten = arrOfNameKindergarten[rand() % arrOfNameKindergarten.size()];
+                people[i] = new Children(name, surname, year, piesel, sex, Kindergarten);
+            }
+            else {
+                string Work = arrOfWork[rand() % arrOfWork.size()];
+                people[i] = new People(name, surname, year, piesel, sex, Work, to_string(rand()% 20));
+            }
+           
         }
     }
 }
 
+/*
 Uzond::Users* Uzond::getPerson(int index) const {
     if (index < 0 || index >= size_Of_arr_peopls) {
         return nullptr;
@@ -453,3 +464,4 @@ bool Uzond::save(std::ostream& out) const {
 
     return true;
 }
+*/

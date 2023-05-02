@@ -1,5 +1,5 @@
 #include "Header.h"
-
+/*
 bool chek_file(string file) {
 	ifstream in;
 	in.open(file, ios::in);
@@ -13,14 +13,14 @@ bool chek_file(string file) {
 	};
 	return rez;
 }
-
+*/
 void error()
 {
 	Beep(800, 150);
 	cout << "ERROR!" << endl << endl;
 	system("pause");
 }
-
+/*
 bool isdigit_r(unsigned char a) { return (a >= '0' && a <= '9'); }
 
 bool isalpha_r(unsigned char a)
@@ -30,13 +30,13 @@ bool isalpha_r(unsigned char a)
 	return rez;
 }
 
-
-Uzond* create(short size, short size_of_peopl, vector<string> arrOfNameUrzant, vector<string> arrOfNames, vector<string> arrOfSurnames) {
+*/
+Uzond* create(short size, short size_of_peopl, vector<string> arrOfNameUrzant, vector<string> arrOfNames, vector<string> arrOfSurnames, vector<string> arrOfNameKindergarten, vector<string> arrOfWork) {
 	Uzond* arr = new Uzond[size];
 	for (int i = 0; i < size; i++) {
 		arr[i].Name_property = arrOfNameUrzant[rand() % arrOfNameUrzant.size()];
-		arr[i].Numer_property = rand_data(num_);
-		arr[i].createPeopleArray(size_of_peopl, arrOfNames, arrOfSurnames);
+		arr[i].Numer_property = rand_data(_num);
+		arr[i].createPeopleArray(size_of_peopl, arrOfNames, arrOfSurnames, arrOfNameKindergarten, arrOfWork);
 
 	}
 	return arr;
@@ -90,7 +90,7 @@ string rand_data(int max)
 	}
 	return "error";
 }
-
+/*
 void show(Uzond* program)
 {
 	system("cls");
@@ -111,7 +111,7 @@ void show(Uzond* program)
 	}
 }
 
-void add(Uzond*& program, vector<string> arr_name, vector<string> arr_suname, vector<string>arr_of_name_urzant)
+void add(Uzond*& program, vector<string> arr_name, vector<string> arr_suname, vector<string>arr_of_name_urzant, vector<string> arrOfNameKindergarten, vector<string> arrOfWork)
 {
 	cout << "Ñhcesz dodac urzond lub osobe(u lub o)" << endl;
 	Uzond* program_n = nullptr;
@@ -127,8 +127,8 @@ void add(Uzond*& program, vector<string> arr_name, vector<string> arr_suname, ve
 			program_n[i] = program[i];
 		}
 		program_n[size - 1].Name_property = arr_of_name_urzant[rand() % arr_of_name_urzant.size()];
-		program_n[size - 1].Numer_property = rand_data(num_);
-		program_n[size - 1].createPeopleArray(program->get_size_Of_arr_peopls(), arr_name, arr_suname);
+		program_n[size - 1].Numer_property = rand_data(_num);
+		program_n[size - 1].createPeopleArray(program->get_size_Of_arr_peopls(), arr_name, arr_suname, arrOfNameKindergarten, arrOfWork);
 
 		program = program_n;
 
@@ -329,3 +329,4 @@ vector<char> stringToArrChar(const string& str) {
 	return char_array;
 }
 
+*/

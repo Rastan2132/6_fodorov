@@ -172,7 +172,7 @@ public:
     void setNumer(string Numer_) { Numer = Numer_; }
     string getNumer() const { return Numer; }
 
-    void createPeopleArray(int size_of_people, vector<string> arrOfNames, vector<string> arrOfSurnames);
+    void createPeopleArray(int size_of_people, vector<string> arrOfNames, vector<string> arrOfSurnames, vector<string> arrOfNameKindergarten, vector<string> arrOfWork);
     Users* getPerson(int index) const;
     void removeUzond(Uzond*& program, short index);
     void removePerson(int index);
@@ -215,7 +215,7 @@ public:
 
 void error();
 
-Uzond* create(short size, short size_of_peopl, vector<string> arrOfNameUrzant, vector<string> arrOfNames, vector<string> arrOfSurnames);
+Uzond* create(short size, short size_of_peopl, vector<string> arrOfNameUrzant, vector<string> arrOfNames, vector<string> arrOfSurnames, vector<string> arrOfNameKindergarten, vector<string> arrOfWork);
 void show(Uzond* program);
 void add(Uzond*& program, vector<string> arr_name, vector<string> arr_suname, vector<string>arr_of_name_urzant);
 char* strstr_lower(char* str_a, char* str_b);
