@@ -100,13 +100,8 @@ class Uzond {
         __declspec(property(get = get_piesel, put = set_piesel)) string piesel_property;
         __declspec(property(get = get_sex, put = set_sex)) string sex_property;
         __declspec(property(get = get_fullname, put = set_fullname)) Full_name* FullName_property;
-        void print() const {
-            cout << "Name: " << FullName->get_name() << endl;
-            cout << "Surname: " << FullName->get_surname() << endl;
-            cout << "Year: " << Year << endl;
-            cout << "Piesel: " << piesel << endl;
-            cout << "Sex: " << sex << endl;
-        }
+
+        void print(Uzond program, short j) const;
 
         friend class Uzond;
     };
@@ -128,6 +123,7 @@ class Uzond {
         __declspec(property(get = get_work, put = set_work)) string Work_property;
         __declspec(property(get = get_work_experience, put = set_work_experience)) string Work_experience_property;
 
+        void print(Uzond program, short j) const;
         friend class Uzond;
     };
 
@@ -143,6 +139,7 @@ class Uzond {
 
         __declspec(property(get = get_kindergarten, put = set_kindergarten)) string Kindergarten_property;
 
+        void print(Uzond program, short j) const;
         friend class Uzond;
     };
 
@@ -159,7 +156,7 @@ public:
 
     void setPeople(Users** people_);
     Users** getPeople() const { return people; }
-
+    
     int get_size_Of_arr_peopls() { return size_Of_arr_peopls; }
     void set_size_Of_arr_peopls(int size_Of_arr_peopls_) { size_Of_arr_peopls = size_Of_arr_peopls_; }
 
@@ -176,11 +173,8 @@ public:
     Users* getPerson(int index) const;
     void removeUzond(Uzond*& program, short index);
     void removePerson(int index);
-
+    void show(Uzond* program) const;
     void addPerson(vector<string> arrOfNames, vector<string> arrOfSurnames);
-
-    void show(Uzond program);
-    void show_ones(Uzond program, int j);
 
     void edit(int index_1, string name, string surname, string year, string piesel, string sex);
 

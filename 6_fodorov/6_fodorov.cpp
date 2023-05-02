@@ -9,7 +9,7 @@ int main()
 	vector<string> NAMES = { "Alexander","Maxim","Dmitry","Sergei","Ivan","Anna","Maria","Olga","Elena","Natalia" };
 	vector<string> SURNAMES = { "Ivanov","Petrov","Sidorov","Smirnov","Kuznetsov","Ivanova","Petrova","Sidorova","Smirnova","Kuznetsova" };
 	vector<string>NAMES_of_Uzond = { "Urzad_Pracy","Urzad_Spraw","Urzad_Skarbowy","Urzad_s._cywilnego" };
-	vector<string> arrOfNameKindergarten = { "Krasnoludek", "Słoneczko", "Bajka", "Promyczek" };
+	vector<string> arrOfNameKindergarten = { "Krasnoludek", "Sloneczko", "Bajka", "Promyczek" };
 	vector<string> arrOfWork = { "nauczyciel", "lekarz", "informatyk", "sprzedawca", "prawnik" };
 //	if (chek_file("Uzonds.txt") == 0)
 //	{
@@ -37,7 +37,7 @@ int main()
 	ShowCursor(0);
 	do
 	{
-		//show(program);
+		program->show(program);
 		switch (_getch())
 		{
 		case (113):

@@ -9,20 +9,6 @@ Uzond::Users::Users(const Users& other) {
     piesel = other.piesel;
     sex = other.sex;
 
-}
-void Uzond::Users::show(Uzond program, short size_of_people)
-{
-
-    for (short j = 0; j < size_of_people; j++)
-    {
-        Uzond::Users* person = program.getPerson(j);
-        if (person != nullptr) {
-            cout << right << setw(3) << setfill('0') << j + 1 << setfill(' ') << " " << MANIP << person->Name << " " << MANIP << person->Surname << " " << MANIP << person->Year << " " << MANIP << person->piesel << " " << MANIP << person->sex << " ";
-        }
-        cout << endl << " ";
-    }
-    cout << endl << endl;
-}
 */
 Uzond::Uzond()
 {
@@ -160,26 +146,10 @@ void Uzond::addPerson(vector<string> arrOfNames, vector<string> arrOfSurnames) {
     new_people = people;
     new_people[size_Of_arr_peopls - 1] = person;
 }
+*/
 
-void Uzond::show(Uzond program)
-{
 
-    for (short j = 0; j < size_Of_arr_peopls; j++)
-    {
-        Uzond::Users* person = program.getPerson(j);
-        if (person != nullptr) {
-            cout << right << setw(3) << setfill('0') << j + 1 << setfill(' ') << " "
-                << MANIP << person->Name << " "
-                << MANIP << person->Surname << " "
-                << MANIP << person->Year << " "
-                << MANIP << person->piesel << " "
-                << MANIP << person->sex << " ";
-        }
-        cout << endl << " ";
-    }
-    cout << endl << endl;
-}
-
+/*
 void Uzond::show_ones(Uzond program, int j)
 {
 
@@ -465,3 +435,28 @@ bool Uzond::save(std::ostream& out) const {
     return true;
 }
 */
+
+void Uzond::show(Uzond* program) const
+{
+    system("cls");
+    cout << "----------------------------------------------------------------------------------------------------\n";
+    cout << MENU << endl;
+    cout << "----------------------------------------------------------------------------------------------------\n";
+    cout << "					---=== UZOND BOOK ===--- your Uzond: " << program->size_property << endl;
+    cout << "----------------------------------------------------------------------------------------------------\n";
+    cout << stru << endl;
+    cout << "----------------------------------------------------------------------------------------------------\n";
+    for (short i = 0; i < program->size_property; i++)
+    {
+        cout << right << setw(3) << setfill('0') << i + 1 << setfill(' ') << " ";
+        cout << MANIP << program[i].Name_property << " " << MANIP << program[i].Numer_property << endl;
+        cout << endl;
+        for (short j = 0; j < program[i].size_Of_arr_peopls_property; j++)
+        {
+
+            people[j]->print(*this, j);
+            cout << endl;
+        }
+        cout << endl << endl;
+    }
+}

@@ -128,8 +128,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="6_fodorov.cpp" />
+    <ClCompile Include="Children.cpp" />
     <ClCompile Include="function.cpp" />
     <ClCompile Include="grafics.cpp" />
+    <ClCompile Include="People.cpp" />
+    <ClCompile Include="Users.cpp" />
     <ClCompile Include="uzond.cpp" />
   </ItemGroup>
   <ItemGroup>
