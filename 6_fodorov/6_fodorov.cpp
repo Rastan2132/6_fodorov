@@ -87,7 +87,7 @@ int main()
 		//	program->sort(program);
 			break;
 		case (121):
-		//	program->find(program);
+			program->find(program);
 			break;
 		}
 	} while (work);

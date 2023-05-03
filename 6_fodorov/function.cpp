@@ -20,7 +20,7 @@ void error()
 	cout << "ERROR!" << endl << endl;
 	system("pause");
 }
-/*
+
 bool isdigit_r(unsigned char a) { return (a >= '0' && a <= '9'); }
 
 bool isalpha_r(unsigned char a)
@@ -30,7 +30,6 @@ bool isalpha_r(unsigned char a)
 	return rez;
 }
 
-*/
 Uzond* create(short size, short size_of_peopl, vector<string> arrOfNameUrzant, vector<string> arrOfNames, vector<string> arrOfSurnames, vector<string> arrOfNameKindergarten, vector<string> arrOfWork) {
 	Uzond* arr = new Uzond[size];
 	for (int i = 0; i < size; i++) {
@@ -256,7 +255,7 @@ void edit(Uzond*& program, short index_1, short index_2)
 		}
 	}
 	ShowCursor(0);
-}
+}*/
 void print_find(char* str, short str_size, char* keyword, short key_size, int text, int back)
 {
 	if (str == nullptr || keyword == nullptr) return;
@@ -325,5 +324,3 @@ vector<char> stringToArrChar(const string& str) {
 	char_array.push_back('\0');
 	return char_array;
 }
-
-*/

@@ -200,9 +200,9 @@ void Uzond::sort(Uzond*& program)
         {
             for (short i = 0; i < program->size_Of_arr_peopls_property; i++) {
                 for (short j = i + 1; j < program->size_Of_arr_peopls_property; j++) {
-                    if (program[l].getPeople()[i]->Name.compare(program[l].getPeople()[j]->Name) > 0) {
-                        swap(program[l].getPeople()[i]->Name, program[l].getPeople()[j]->Name);
-                        swap(program[l].getPeople()[i]->Surname, program[l].getPeople()[j]->Surname);
+                    if (program[l].getPeople()[i]->FullName->Name_property.compare(program[l].getPeople()[j]->FullName->Name_property) > 0) {
+                        swap(program[l].getPeople()[i]->FullName_property->Name_property, program[l].getPeople()[j]->FullName->Name_property);
+                        swap(program[l].getPeople()[i]->FullName->Surname_property, program[l].getPeople()[j]->FullName->Surname_property);
                         swap(program[l].getPeople()[i]->sex, program[l].getPeople()[j]->sex);
                         swap(program[l].getPeople()[i]->piesel, program[l].getPeople()[j]->piesel);
                         swap(program[l].getPeople()[i]->Year, program[l].getPeople()[j]->Year);
@@ -218,9 +218,9 @@ void Uzond::sort(Uzond*& program)
         {
             for (short i = 0; i < program->size_Of_arr_peopls_property; i++) {
                 for (short j = i + 1; j < program->size_Of_arr_peopls_property; j++) {
-                    if (program[l].getPeople()[i]->Surname.compare(program[l].getPeople()[j]->Surname) > 0) {
-                        swap(program[l].getPeople()[i]->Name, program[l].getPeople()[j]->Name);
-                        swap(program[l].getPeople()[i]->Surname, program[l].getPeople()[j]->Surname);
+                    if (program[l].getPeople()[i]->FullName->Surname_property.compare(program[l].getPeople()[j]->FullName->Surname_property) > 0) {
+                        swap(program[l].getPeople()[i]->FullName->Name_property, program[l].getPeople()[j]->FullName->Name_property);
+                        swap(program[l].getPeople()[i]->FullName->Surname_property, program[l].getPeople()[j]->FullName->Surname_property);
                         swap(program[l].getPeople()[i]->sex, program[l].getPeople()[j]->sex);
                         swap(program[l].getPeople()[i]->piesel, program[l].getPeople()[j]->piesel);
                         swap(program[l].getPeople()[i]->Year, program[l].getPeople()[j]->Year);
@@ -237,8 +237,8 @@ void Uzond::sort(Uzond*& program)
             for (short i = 0; i < program->size_Of_arr_peopls_property; i++) {
                 for (short j = i + 1; j < program->size_Of_arr_peopls_property; j++) {
                     if (program[l].getPeople()[i]->sex.compare(program[l].getPeople()[j]->sex) > 0) {
-                        swap(program[l].getPeople()[i]->Name, program[l].getPeople()[j]->Name);
-                        swap(program[l].getPeople()[i]->Surname, program[l].getPeople()[j]->Surname);
+                        swap(program[l].getPeople()[i]->FullName->Name_property, program[l].getPeople()[j]->FullName->Name_property);
+                        swap(program[l].getPeople()[i]->FullName->Surname_property, program[l].getPeople()[j]->FullName->Surname_property);
                         swap(program[l].getPeople()[i]->sex, program[l].getPeople()[j]->sex);
                         swap(program[l].getPeople()[i]->piesel, program[l].getPeople()[j]->piesel);
                         swap(program[l].getPeople()[i]->Year, program[l].getPeople()[j]->Year);
@@ -255,8 +255,8 @@ void Uzond::sort(Uzond*& program)
             for (short i = 0; i < program->size_Of_arr_peopls_property; i++) {
                 for (short j = i + 1; j < program->size_Of_arr_peopls_property; j++) {
                     if (program[l].getPeople()[i]->piesel.compare(program[l].getPeople()[j]->piesel) > 0) {
-                        swap(program[l].getPeople()[i]->Name, program[l].getPeople()[j]->Name);
-                        swap(program[l].getPeople()[i]->Surname, program[l].getPeople()[j]->Surname);
+                        swap(program[l].getPeople()[i]->FullName->Name_property, program[l].getPeople()[j]->FullName->Name_property);
+                        swap(program[l].getPeople()[i]->FullName->Surname_property, program[l].getPeople()[j]->FullName->Surname_property);
                         swap(program[l].getPeople()[i]->sex, program[l].getPeople()[j]->sex);
                         swap(program[l].getPeople()[i]->piesel, program[l].getPeople()[j]->piesel);
                         swap(program[l].getPeople()[i]->Year, program[l].getPeople()[j]->Year);
@@ -273,8 +273,8 @@ void Uzond::sort(Uzond*& program)
             for (short i = 0; i < program->size_Of_arr_peopls_property; i++) {
                 for (short j = i + 1; j < program->size_Of_arr_peopls_property; j++) {
                     if (program[l].getPeople()[i]->Year.compare(program[l].getPeople()[j]->Year) > 0) {
-                        swap(program[l].getPeople()[i]->Name, program[l].getPeople()[j]->Name);
-                        swap(program[l].getPeople()[i]->Surname, program[l].getPeople()[j]->Surname);
+                        swap(program[l].getPeople()[i]->FullName->Name_property, program[l].getPeople()[j]->FullName->Name_property);
+                        swap(program[l].getPeople()[i]->FullName->Surname_property, program[l].getPeople()[j]->FullName->Surname_property);
                         swap(program[l].getPeople()[i]->sex, program[l].getPeople()[j]->sex);
                         swap(program[l].getPeople()[i]->piesel, program[l].getPeople()[j]->piesel);
                         swap(program[l].getPeople()[i]->Year, program[l].getPeople()[j]->Year);
@@ -295,7 +295,7 @@ void Uzond::sort(Uzond*& program)
     }
     }
 }
-
+*/
 void Uzond::find(Uzond*& program)
 {
     if (program == nullptr || program->size_property == 0 || program->size_Of_arr_peopls_property == 0)
@@ -360,15 +360,15 @@ void Uzond::find(Uzond*& program)
             cout << "Rezultat o " << l + 1 << " linii" << endl;
             for (short i = 0; i < program->size_Of_arr_peopls_property; i++)
             {
-                if (strstr_lower(stringToArrChar(program[l].getPeople()[i]->Name).data(), keyword)
-                    || strstr_lower(stringToArrChar(program[l].getPeople()[i]->Surname).data(), keyword)
+                if (strstr_lower(stringToArrChar(program[l].getPeople()[i]->FullName->Name_property).data(), keyword)
+                    || strstr_lower(stringToArrChar(program[l].getPeople()[i]->FullName->Surname_property).data(), keyword)
                     || strstr_lower(stringToArrChar(program[l].getPeople()[i]->piesel).data(), keyword)
                     || strstr_lower(stringToArrChar(program[l].getPeople()[i]->Year).data(), keyword)
                     || strstr_lower(stringToArrChar(program[l].getPeople()[i]->sex).data(), keyword))
                 {
                     cout << left << setw(3) << i + 1 << "  ";
-                    print_find(stringToArrChar(program[l].getPeople()[i]->Name).data(), MAXLINE, keyword, MAXLINE, Red);
-                    print_find(stringToArrChar(program[l].getPeople()[i]->Surname).data(), MAXLINE, keyword, MAXLINE, Red);
+                    print_find(stringToArrChar(program[l].getPeople()[i]->FullName->Name_property).data(), MAXLINE, keyword, MAXLINE, Red);
+                    print_find(stringToArrChar(program[l].getPeople()[i]->FullName->Surname_property).data(), MAXLINE, keyword, MAXLINE, Red);
                     print_find(stringToArrChar(program[l].getPeople()[i]->Year).data(), MAXLINE, keyword, MAXLINE, Red);
                     print_find(stringToArrChar(program[l].getPeople()[i]->piesel).data(), MAXLINE, keyword, MAXLINE, Red);
                     print_find(stringToArrChar(program[l].getPeople()[i]->sex).data(), MAXLINE, keyword, MAXLINE, Red);
@@ -383,7 +383,7 @@ void Uzond::find(Uzond*& program)
     delete[] keyword; keyword = nullptr;
 }
 
-
+/*
 bool Uzond::initForFile(Uzond*& program) {
     ifstream in("Uzonds.txt");
     if (!in.is_open()) {
