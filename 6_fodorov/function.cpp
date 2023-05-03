@@ -91,8 +91,7 @@ string rand_data(int max)
 	return "error";
 }
 
-/*
-void add(Uzond*& program, vector<string> arr_name, vector<string> arr_suname, vector<string>arr_of_name_urzant, vector<string> arrOfNameKindergarten, vector<string> arrOfWork)
+void add(Uzond*& program, vector<string> arr_name, vector<string> arr_surname, vector<string> arr_of_name_urzant, vector<string> arrOfNameKindergarten, vector<string> arrOfWork)
 {
 	cout << "Ñhcesz dodac urzond lub osobe(u lub o)" << endl;
 	Uzond* program_n = nullptr;
@@ -101,7 +100,6 @@ void add(Uzond*& program, vector<string> arr_name, vector<string> arr_suname, ve
 	case (117): {
 		short size = program->size_property;
 		size++;
-		program->size_property = size;
 		program_n = new Uzond[size];
 		program_n->size_property = size;
 		for (int i = 0; i < size - 1; i++) {
@@ -109,23 +107,41 @@ void add(Uzond*& program, vector<string> arr_name, vector<string> arr_suname, ve
 		}
 		program_n[size - 1].Name_property = arr_of_name_urzant[rand() % arr_of_name_urzant.size()];
 		program_n[size - 1].Numer_property = rand_data(_num);
-		program_n[size - 1].createPeopleArray(program->get_size_Of_arr_peopls(), arr_name, arr_suname, arrOfNameKindergarten, arrOfWork);
+		program_n[size - 1].createPeopleArray(program->get_size_Of_arr_peopls(), arr_name, arr_surname, arrOfNameKindergarten, arrOfWork);
+		delete[] program;
 
 		program = program_n;
 
 		break;
 	}
-	case (111):
+	case (111): {
+		cout << "Ty chces dodac People lub Children? (1 or 2)" << endl;
+		bool flag;
+		switch (_getch())
+		{
+		case ('1'):
+			flag = 0;
+			break;
+		case ('2'):
+			flag = 1;
+			break;
+		default:
+			flag = 0;
+			break;
+		}
 		short size_of_peopl = program->size_Of_arr_peopls_property;
 		size_of_peopl++;
-		for (short i = 0; i < size_of_peopl; i++)
+		for (short i = 0; i < program->size_property; i++)
 			program[i].size_Of_arr_peopls_property = size_of_peopl;
 		for (int i = 0; i < program->size_property; i++)
-			program[i].addPerson(arr_name, arr_suname);
+			program[i].addPerson(arr_name, arr_surname, arrOfNameKindergarten, arrOfWork, flag);
 		break;
 	}
-
+	default:
+		break;
+	}
 }
+/*
 void dell(Uzond*& program)
 {
 	cout << "Usunac uzytkownika lub uzytkownika? (u lub o)" << endl;

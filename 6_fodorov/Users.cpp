@@ -1,11 +1,12 @@
 #include "Header.h"
-void Uzond::Users::print(Uzond program, short j) const
+ void Uzond::Users::print(Uzond program, short j) const
 {
-    cout << right << setw(3) << setfill('0') << j + 1 << setfill(' ') << " "
+
+    cout <<"   " << right << setw(3) << setfill('0') << j + 1 << setfill(' ') << " "
         << MANIP << FullName->Name_property << " "
         << MANIP << FullName->Surname_property << " "
-        << MANIP << Year << " "
+        << left << setw(8) << setfill(' ') << Year << " "
         << MANIP << piesel << " "
-        << MANIP << sex << " ";
+        << left << setw(8) << setfill(' ') << sex << " ";
 
 }

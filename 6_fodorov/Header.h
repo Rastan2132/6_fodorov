@@ -13,19 +13,23 @@
 
 using namespace std;
 
-#define MAXLINE 20
+#define MAXLINE 15
 #define _num 3
 #define _sex 2
 #define _year 4
 #define _piesel 12
 
 #define MENU "| q-Zamkac |  a-ADD uzytkownika  |  d-Usuwanie uzytkownika |  e-Redaktor |  s-Sortowac |  y-Szukaj |" 
-#define stru "#       Name                 Surname	          Year		       Piesel 	       Sex"
+#define stru "#      Name            Surname	       Year     Piesel 	        Sex      Work/Kinder.    work exp."
 
 #define MANIP setw(MAXLINE) <<  left 
 
 int rand_data(string sex);
 string rand_data(int max);
+
+
+enum Keys { Enter = 13, Backspace = 8 };
+enum SpecialKeys { Left = 75, Right = 77, End = 79, Home = 71, Esc = 27, Del = 83 };
 
 struct COLOR
 {
@@ -38,26 +42,24 @@ enum ConsoleColor
     LightBlue, LightGreen, LightCyan, LightRed, LightMagenta, Yellow, White
 };
 
-enum Keys { Enter = 13, Backspace = 8 };
-enum SpecialKeys { Left = 75, Right = 77, End = 79, Home = 71, Esc = 27, Del = 83 };
+class Full_name
+{
+    string Name = " ";
+    string Surname = " ";
+public:
+    Full_name(string Name_ = "lol", string Surname_ = "lol") :Name(Name_), Surname(Surname_) {}
+
+    string get_name() const { return Name; }
+    string get_surname() const { return Surname; }
+    void set_name(string Name_) { Name = Name_; }
+    void set_surname(string Surname_) { Surname = Surname_; }
+    __declspec(property(get = get_name, put = set_name)) string Name_property;
+    __declspec(property(get = get_surname, put = set_surname)) string Surname_property;
+
+};
 
 class Uzond {
-    class Full_name
-    {
-        string Name = " ";
-        string Surname = " ";
-    public:
-        Full_name(string Name_ = "lol", string Surname_ = "lol") :Name(Name_), Surname(Surname_) {}
-
-        string get_name() const { return Name; }
-        string get_surname() const { return Surname; }
-        void set_name(string Name_) { Name = Name_; }
-        void set_surname(string Surname_) { Surname = Surname_; }
-        __declspec(property(get = get_name, put = set_name)) string Name_property;
-        __declspec(property(get = get_surname, put = set_surname)) string Surname_property;
-
-        friend class Uzond;
-    };
+    
 
     class Users
     {
@@ -71,7 +73,7 @@ class Uzond {
 
         Users(const Users& other) : Year(other.Year), piesel(other.piesel), sex(other.sex), FullName{ new Full_name {*other.FullName} } {}
 
-        ~Users() {
+        virtual ~Users() {
             delete FullName;
         }
         Users& operator=(const Users& other) {
@@ -101,7 +103,7 @@ class Uzond {
         __declspec(property(get = get_sex, put = set_sex)) string sex_property;
         __declspec(property(get = get_fullname, put = set_fullname)) Full_name* FullName_property;
 
-        void print(Uzond program, short j) const;
+        virtual void print(Uzond program, short j) const;
 
         friend class Uzond;
     };
@@ -123,7 +125,7 @@ class Uzond {
         __declspec(property(get = get_work, put = set_work)) string Work_property;
         __declspec(property(get = get_work_experience, put = set_work_experience)) string Work_experience_property;
 
-        void print(Uzond program, short j) const;
+         void print(Uzond program, short j) const;
         friend class Uzond;
     };
 
@@ -174,7 +176,7 @@ public:
     void removeUzond(Uzond*& program, short index);
     void removePerson(int index);
     void show(Uzond* program) const;
-    void addPerson(vector<string> arrOfNames, vector<string> arrOfSurnames);
+    void addPerson(vector<string> arrOfNames, vector<string> arrOfSurnames, vector<string> arrOfNameKindergarten, vector<string> arrOfWork, bool flag);
 
     void edit(int index_1, string name, string surname, string year, string piesel, string sex);
 
@@ -210,8 +212,7 @@ public:
 void error();
 
 Uzond* create(short size, short size_of_peopl, vector<string> arrOfNameUrzant, vector<string> arrOfNames, vector<string> arrOfSurnames, vector<string> arrOfNameKindergarten, vector<string> arrOfWork);
-void show(Uzond* program);
-void add(Uzond*& program, vector<string> arr_name, vector<string> arr_suname, vector<string>arr_of_name_urzant);
+void add(Uzond*& program, vector<string> arr_name, vector<string> arr_suname, vector<string>arr_of_name_urzant, vector<string> arrOfNameKindergarten, vector<string>arrOfWork);
 char* strstr_lower(char* str_a, char* str_b);
 bool isalpha_r(unsigned char a);
 bool isdigit_r(unsigned char a);
