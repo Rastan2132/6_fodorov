@@ -71,7 +71,7 @@ int main()
 			add(program, NAMES, SURNAMES, NAMES_of_Uzond, arrOfNameKindergarten, arrOfWork);
 			break;
 		case (100):
-		//	dell(program);
+			dell(program);
 			break;
 		case (101):
 		//	do {

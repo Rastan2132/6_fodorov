@@ -141,7 +141,7 @@ void add(Uzond*& program, vector<string> arr_name, vector<string> arr_surname, v
 		break;
 	}
 }
-/*
+
 void dell(Uzond*& program)
 {
 	cout << "Usunac uzytkownika lub uzytkownika? (u lub o)" << endl;
@@ -185,7 +185,7 @@ void dell(Uzond*& program)
 	}
 	}
 }
-
+/*
 void edit(Uzond*& program, short index_1, short index_2)
 {
 	system("cls");

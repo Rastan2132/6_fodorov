@@ -101,7 +101,7 @@ Uzond::Users* Uzond::getPerson(int index) const {
         return nullptr;
     }
     return people[index];
-}
+}*/
 void Uzond::removeUzond(Uzond*& program, short index) {
     if (index < 0 || index >= size) {
         return;
@@ -135,7 +135,7 @@ void Uzond::removePerson(int index) {
     people = new_people;
 }
 
-*/
+
 void Uzond::addPerson(vector<string> arrOfNames, vector<string> arrOfSurnames, vector<string> arrOfNameKindergarten, vector<string> arrOfWork, bool flag) {
     string sex = rand_data(_sex);
     string name = arrOfNames[rand_data(sex)];
