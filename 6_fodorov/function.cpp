@@ -186,7 +186,7 @@ void dell(Uzond*& program)
 	}
 	}
 }
-/*
+
 void edit(Uzond*& program, short index_1, short index_2)
 {
 	system("cls");
@@ -198,7 +198,7 @@ void edit(Uzond*& program, short index_1, short index_2)
 	string line;
 	string name = "", surname = " ", Year = " ", Piesel = " ", Sex = " ";
 	cout << "Wstepne dane:" << endl;
-	program->show_ones(program[index_1], index_2);
+	program[index_1].getPerson(index_2)->print(*program, index_2);
 	bool valid_input = false;
 	cout << "Podaj Name Surname Year Pesel i sex: ";
 	while (!valid_input) {
@@ -250,15 +250,16 @@ void edit(Uzond*& program, short index_1, short index_2)
 				error();
 			}
 			else {
-
-				program[index_1].edit(index_2, name, surname, Year, Piesel, Sex);
+				
+					program[index_1].edit(index_2, name, surname, Year, Piesel, Sex);
+				
 				valid_input = true;
 			}
 		}
 	}
 	ShowCursor(0);
 }
-*/
+
 void print_find(char* str, short str_size, char* keyword, short key_size, int text, int back)
 {
 	if (str == nullptr || keyword == nullptr) return;

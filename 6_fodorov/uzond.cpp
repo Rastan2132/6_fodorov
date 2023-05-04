@@ -168,36 +168,10 @@ Uzond::Users* Uzond::getPerson(int index) const {
     }
     return people[index];
 }
-/*
-void Uzond::show_ones(Uzond program, short i , short  j)
-{
 
-    Uzond::Users* person = program[i].getPerson(j);
-    if (dynamic_cast<People*>(program[i].people[j])) {
-        People* p_people = dynamic_cast<People*>(program[i].people[j]);
-        p_people->print(*this, j);
-    }
-    else if (dynamic_cast<Children*>(program[i].people[j])) {
-        Children* p_children = dynamic_cast<Children*>(program[i].people[j]);
-        p_children->print(*this, j);
-    }
-    cout << endl;
-}
 
-void Uzond::edit(int index_1, string name, string surname, string year, string piesel, string sex) {
 
-    Users* person = new Users(name, surname, year, piesel, sex);
-    Users** new_people = new Users * [size_Of_arr_peopls];
-    for (int i = 0; i < size_Of_arr_peopls; i++) {
-        new_people[i] = people[i];
-    }
-    new_people[index_1] = person;
 
-    delete[] people;
-    people = new_people;
-}
-
-*/
 
 void Uzond::sort(Uzond*& program)
 {

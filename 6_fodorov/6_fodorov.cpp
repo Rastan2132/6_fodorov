@@ -74,14 +74,14 @@ int main()
 			dell(program);
 			break;
 		case (101):
-		/*	do {
+			do {
 				cout << "wprowadz numer urzendu i numer osoby" << endl;
 				cin >> urz_num >> p_num;
 				if (urz_num > 0 && p_num > 0 && urz_num <= program->size_property && p_num <= program->size_Of_arr_peopls_property)
 					break;
 				error();
 			} while (true);
-			edit(program, urz_num - 1, p_num - 1);*/
+			edit(program, urz_num - 1, p_num - 1);
 			break;
 		case (115):
 			program->sort(program);

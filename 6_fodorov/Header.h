@@ -201,7 +201,30 @@ public:
     void show(Uzond* program) const;
     void addPerson(vector<string> arrOfNames, vector<string> arrOfSurnames, vector<string> arrOfNameKindergarten, vector<string> arrOfWork, bool flag);
 
-    void edit(int index_1, string name, string surname, string year, string piesel, string sex);
+    void edit(int index_1, string name, string surname, string year, string piesel, string sex) {
+
+        Children* person = new Children(name, surname, year, piesel, sex);
+        Users** new_people = new Users * [size_Of_arr_peopls];
+        for (int i = 0; i < size_Of_arr_peopls; i++) {
+            new_people[i] = people[i];
+        }
+        new_people[index_1] = person;
+
+        delete[] people;
+        people = new_people;
+    }
+    void edit(int index_1, string name, string surname, string year, string piesel, string sex, string work , string Work_e) {
+
+        People* person = new People(name, surname, year, piesel, sex, work , Work_e);
+        Users** new_people = new Users * [size_Of_arr_peopls];
+        for (int i = 0; i < size_Of_arr_peopls; i++) {
+            new_people[i] = people[i];
+        }
+        new_people[index_1] = person;
+
+        delete[] people;
+        people = new_people;
+    }
 
     bool initForFile(Uzond*& program);
     void sort(Uzond*& program);
