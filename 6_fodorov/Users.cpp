@@ -1,5 +1,5 @@
 #include "Header.h"
- void Uzond::Users::print(Uzond program, short j) const
+void Uzond::Users::print(Uzond program, short j) const
 {
 
     cout <<"   " << right << setw(3) << setfill('0') << j + 1 << setfill(' ') << " "

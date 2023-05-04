@@ -93,12 +93,14 @@ string rand_data(int max)
 void add(Uzond*& program, vector<string> arr_name, vector<string> arr_surname, vector<string> arr_of_name_urzant, vector<string> arrOfNameKindergarten, vector<string> arrOfWork)
 {
 	cout << "Ñhcesz dodac urzond lub osobe(u lub o)" << endl;
-	Uzond* program_n = nullptr;
+	
 	switch (_getch())
 	{
 	case (117): {
+		Uzond* program_n = nullptr;
 		short size = program->size_property;
 		size++;
+		program->size_property = size;
 		program_n = new Uzond[size];
 		program_n->size_property = size;
 		for (int i = 0; i < size - 1; i++) {
@@ -255,7 +257,8 @@ void edit(Uzond*& program, short index_1, short index_2)
 		}
 	}
 	ShowCursor(0);
-}*/
+}
+*/
 void print_find(char* str, short str_size, char* keyword, short key_size, int text, int back)
 {
 	if (str == nullptr || keyword == nullptr) return;

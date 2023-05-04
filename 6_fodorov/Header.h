@@ -56,6 +56,13 @@ public:
     __declspec(property(get = get_name, put = set_name)) string Name_property;
     __declspec(property(get = get_surname, put = set_surname)) string Surname_property;
 
+    Full_name& operator=(const Full_name& other) {
+        if (this != &other) {
+            Name = other.Name;
+            Surname = other.Surname;
+        }
+        return *this;
+    }
 };
 
 class Uzond {
@@ -104,7 +111,7 @@ class Uzond {
         __declspec(property(get = get_fullname, put = set_fullname)) Full_name* FullName_property;
 
         virtual void print(Uzond program, short j) const;
-
+        
         friend class Uzond;
     };
 
@@ -126,6 +133,15 @@ class Uzond {
         __declspec(property(get = get_work_experience, put = set_work_experience)) string Work_experience_property;
 
          void print(Uzond program, short j) const;
+         People& operator=(const People& other) {
+             if (this != &other) {
+                 Users::operator=(other);
+                 work = other.work;
+                 work_experience = other.work_experience;
+             }
+             return *this;
+         }
+
         friend class Uzond;
     };
 
@@ -140,7 +156,14 @@ class Uzond {
         void set_kindergarten(string kindergarten_) { kindergarten = kindergarten_; }
 
         __declspec(property(get = get_kindergarten, put = set_kindergarten)) string Kindergarten_property;
-
+        Children& operator=(const Children& other) {
+            if (this != &other) {
+                Users::operator=(other);
+                kindergarten = other.kindergarten;
+               
+            }
+            return *this;
+        }
         void print(Uzond program, short j) const;
         friend class Uzond;
     };
@@ -189,19 +212,31 @@ public:
     }
     Uzond& operator=(const Uzond& other) {
         if (this != &other) {
-            delete[] people;
-
+            // копируем обычные поля
             Name = other.Name;
             Numer = other.Numer;
             size_Of_arr_peopls = other.size_Of_arr_peopls;
+            size = other.size;
+
+            
+            delete[] people;
             people = new Users * [size_Of_arr_peopls];
             for (int i = 0; i < size_Of_arr_peopls; i++) {
-                people[i] = new Users(*other.people[i]);
+                if (dynamic_cast<People*>(other.people[i])) {
+                    people[i] = new People(*dynamic_cast<People*>(other.people[i]));
+                }
+                else if (dynamic_cast<Children*>(other.people[i])) {
+                    people[i] = new Children(*dynamic_cast<Children*>(other.people[i]));
+                }
+                else {
+                    people[i] = new Users(*other.people[i]);
+                }
             }
         }
         return *this;
     }
 
+    void show_ones(Uzond program, short i, short  j);
 
     _declspec(property(get = get_size_Of_arr_peopls, put = set_size_Of_arr_peopls)) int size_Of_arr_peopls_property;
     __declspec(property(get = get_size, put = set_size)) short size_property;

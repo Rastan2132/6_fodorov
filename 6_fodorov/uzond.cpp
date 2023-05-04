@@ -162,16 +162,26 @@ void Uzond::addPerson(vector<string> arrOfNames, vector<string> arrOfSurnames, v
     people = new_people;
 }
 
-
+Uzond::Users* Uzond::getPerson(int index) const {
+    if (index < 0 || index >= size_Of_arr_peopls) {
+        return nullptr;
+    }
+    return people[index];
+}
 /*
-void Uzond::show_ones(Uzond program, int j)
+void Uzond::show_ones(Uzond program, short i , short  j)
 {
 
-    Uzond::Users* person = program.getPerson(j);
-    if (person != nullptr) {
-        cout << right << setw(3) << setfill('0') << j + 1 << setfill(' ') << " " << MANIP << person->Name << " " << MANIP << person->Surname << " " << MANIP << person->Year << " " << MANIP << person->piesel << " " << MANIP << person->sex << " ";
+    Uzond::Users* person = program[i].getPerson(j);
+    if (dynamic_cast<People*>(program[i].people[j])) {
+        People* p_people = dynamic_cast<People*>(program[i].people[j]);
+        p_people->print(*this, j);
     }
-    cout << endl << endl;
+    else if (dynamic_cast<Children*>(program[i].people[j])) {
+        Children* p_children = dynamic_cast<Children*>(program[i].people[j]);
+        p_children->print(*this, j);
+    }
+    cout << endl;
 }
 
 void Uzond::edit(int index_1, string name, string surname, string year, string piesel, string sex) {
@@ -187,7 +197,7 @@ void Uzond::edit(int index_1, string name, string surname, string year, string p
     people = new_people;
 }
 
-
+*/
 
 void Uzond::sort(Uzond*& program)
 {
@@ -201,8 +211,14 @@ void Uzond::sort(Uzond*& program)
             for (short i = 0; i < program->size_Of_arr_peopls_property; i++) {
                 for (short j = i + 1; j < program->size_Of_arr_peopls_property; j++) {
                     if (program[l].getPeople()[i]->FullName->Name_property.compare(program[l].getPeople()[j]->FullName->Name_property) > 0) {
-                        swap(program[l].getPeople()[i]->FullName_property->Name_property, program[l].getPeople()[j]->FullName->Name_property);
-                        swap(program[l].getPeople()[i]->FullName->Surname_property, program[l].getPeople()[j]->FullName->Surname_property);
+                        std::string temp_name = program[l].getPeople()[i]->FullName_property->Name_property;
+                        program[l].getPeople()[i]->FullName_property->Name_property = program[l].getPeople()[j]->FullName->Name_property;
+                        program[l].getPeople()[j]->FullName->Name_property = temp_name;
+
+                        std::string temp_surname = program[l].getPeople()[i]->FullName->Surname_property;
+                        program[l].getPeople()[i]->FullName->Surname_property = program[l].getPeople()[j]->FullName->Surname_property;
+                        program[l].getPeople()[j]->FullName->Surname_property = temp_surname;
+
                         swap(program[l].getPeople()[i]->sex, program[l].getPeople()[j]->sex);
                         swap(program[l].getPeople()[i]->piesel, program[l].getPeople()[j]->piesel);
                         swap(program[l].getPeople()[i]->Year, program[l].getPeople()[j]->Year);
@@ -219,8 +235,14 @@ void Uzond::sort(Uzond*& program)
             for (short i = 0; i < program->size_Of_arr_peopls_property; i++) {
                 for (short j = i + 1; j < program->size_Of_arr_peopls_property; j++) {
                     if (program[l].getPeople()[i]->FullName->Surname_property.compare(program[l].getPeople()[j]->FullName->Surname_property) > 0) {
-                        swap(program[l].getPeople()[i]->FullName->Name_property, program[l].getPeople()[j]->FullName->Name_property);
-                        swap(program[l].getPeople()[i]->FullName->Surname_property, program[l].getPeople()[j]->FullName->Surname_property);
+                        std::string temp_name = program[l].getPeople()[i]->FullName_property->Name_property;
+                        program[l].getPeople()[i]->FullName_property->Name_property = program[l].getPeople()[j]->FullName->Name_property;
+                        program[l].getPeople()[j]->FullName->Name_property = temp_name;
+
+                        std::string temp_surname = program[l].getPeople()[i]->FullName->Surname_property;
+                        program[l].getPeople()[i]->FullName->Surname_property = program[l].getPeople()[j]->FullName->Surname_property;
+                        program[l].getPeople()[j]->FullName->Surname_property = temp_surname;
+
                         swap(program[l].getPeople()[i]->sex, program[l].getPeople()[j]->sex);
                         swap(program[l].getPeople()[i]->piesel, program[l].getPeople()[j]->piesel);
                         swap(program[l].getPeople()[i]->Year, program[l].getPeople()[j]->Year);
@@ -237,8 +259,14 @@ void Uzond::sort(Uzond*& program)
             for (short i = 0; i < program->size_Of_arr_peopls_property; i++) {
                 for (short j = i + 1; j < program->size_Of_arr_peopls_property; j++) {
                     if (program[l].getPeople()[i]->sex.compare(program[l].getPeople()[j]->sex) > 0) {
-                        swap(program[l].getPeople()[i]->FullName->Name_property, program[l].getPeople()[j]->FullName->Name_property);
-                        swap(program[l].getPeople()[i]->FullName->Surname_property, program[l].getPeople()[j]->FullName->Surname_property);
+                        std::string temp_name = program[l].getPeople()[i]->FullName_property->Name_property;
+                        program[l].getPeople()[i]->FullName_property->Name_property = program[l].getPeople()[j]->FullName->Name_property;
+                        program[l].getPeople()[j]->FullName->Name_property = temp_name;
+
+                        std::string temp_surname = program[l].getPeople()[i]->FullName->Surname_property;
+                        program[l].getPeople()[i]->FullName->Surname_property = program[l].getPeople()[j]->FullName->Surname_property;
+                        program[l].getPeople()[j]->FullName->Surname_property = temp_surname;
+
                         swap(program[l].getPeople()[i]->sex, program[l].getPeople()[j]->sex);
                         swap(program[l].getPeople()[i]->piesel, program[l].getPeople()[j]->piesel);
                         swap(program[l].getPeople()[i]->Year, program[l].getPeople()[j]->Year);
@@ -255,8 +283,14 @@ void Uzond::sort(Uzond*& program)
             for (short i = 0; i < program->size_Of_arr_peopls_property; i++) {
                 for (short j = i + 1; j < program->size_Of_arr_peopls_property; j++) {
                     if (program[l].getPeople()[i]->piesel.compare(program[l].getPeople()[j]->piesel) > 0) {
-                        swap(program[l].getPeople()[i]->FullName->Name_property, program[l].getPeople()[j]->FullName->Name_property);
-                        swap(program[l].getPeople()[i]->FullName->Surname_property, program[l].getPeople()[j]->FullName->Surname_property);
+                        std::string temp_name = program[l].getPeople()[i]->FullName_property->Name_property;
+                        program[l].getPeople()[i]->FullName_property->Name_property = program[l].getPeople()[j]->FullName->Name_property;
+                        program[l].getPeople()[j]->FullName->Name_property = temp_name;
+
+                        std::string temp_surname = program[l].getPeople()[i]->FullName->Surname_property;
+                        program[l].getPeople()[i]->FullName->Surname_property = program[l].getPeople()[j]->FullName->Surname_property;
+                        program[l].getPeople()[j]->FullName->Surname_property = temp_surname;
+
                         swap(program[l].getPeople()[i]->sex, program[l].getPeople()[j]->sex);
                         swap(program[l].getPeople()[i]->piesel, program[l].getPeople()[j]->piesel);
                         swap(program[l].getPeople()[i]->Year, program[l].getPeople()[j]->Year);
@@ -273,8 +307,14 @@ void Uzond::sort(Uzond*& program)
             for (short i = 0; i < program->size_Of_arr_peopls_property; i++) {
                 for (short j = i + 1; j < program->size_Of_arr_peopls_property; j++) {
                     if (program[l].getPeople()[i]->Year.compare(program[l].getPeople()[j]->Year) > 0) {
-                        swap(program[l].getPeople()[i]->FullName->Name_property, program[l].getPeople()[j]->FullName->Name_property);
-                        swap(program[l].getPeople()[i]->FullName->Surname_property, program[l].getPeople()[j]->FullName->Surname_property);
+                        std::string temp_name = program[l].getPeople()[i]->FullName_property->Name_property;
+                        program[l].getPeople()[i]->FullName_property->Name_property = program[l].getPeople()[j]->FullName->Name_property;
+                        program[l].getPeople()[j]->FullName->Name_property = temp_name;
+
+                        std::string temp_surname = program[l].getPeople()[i]->FullName->Surname_property;
+                        program[l].getPeople()[i]->FullName->Surname_property = program[l].getPeople()[j]->FullName->Surname_property;
+                        program[l].getPeople()[j]->FullName->Surname_property = temp_surname;
+
                         swap(program[l].getPeople()[i]->sex, program[l].getPeople()[j]->sex);
                         swap(program[l].getPeople()[i]->piesel, program[l].getPeople()[j]->piesel);
                         swap(program[l].getPeople()[i]->Year, program[l].getPeople()[j]->Year);
@@ -295,7 +335,7 @@ void Uzond::sort(Uzond*& program)
     }
     }
 }
-*/
+
 void Uzond::find(Uzond*& program)
 {
     if (program == nullptr || program->size_property == 0 || program->size_Of_arr_peopls_property == 0)
@@ -383,7 +423,7 @@ void Uzond::find(Uzond*& program)
     delete[] keyword; keyword = nullptr;
 }
 
-/*
+
 bool Uzond::initForFile(Uzond*& program) {
     ifstream in("Uzonds.txt");
     if (!in.is_open()) {
@@ -398,16 +438,28 @@ bool Uzond::initForFile(Uzond*& program) {
     for (int i = 0; i < size; i++) {
         program_n[i].people = nullptr;
         string name_u, numer;
+        
         in >> name_u >> numer;
         program_n[i].Name = name_u;
         program_n[i].Numer = numer;
-
+        int flag = 0;
+        string name, surname, year, pesel, sex;
         if (size_of_peopl > 0) {
             Users** people = new Users * [size_of_peopl];
             for (int j = 0; j < size_of_peopl; j++) {
-                string name, surname, year, pesel, sex;
-                in >> name >> surname >> year >> pesel >> sex;
-                people[j] = new Users(name, surname, year, pesel, sex);
+
+                in >> flag;
+                if (flag ==0 ) {
+                    string k;
+                    in >>k >> name >> surname >> year >> pesel >> sex;
+                    people[j] = new Children(name, surname, year, pesel, sex, k); 
+                }
+                else{
+                    string Work_property, Work_experience_property ;
+                    in >> Work_property >> Work_experience_property >> name >> surname >> year >> pesel >> sex;
+                    people[j] = new People(name, surname, year, pesel, sex, Work_property, Work_experience_property);
+                }
+               
             }
             program_n[i].people = people;
         }
@@ -439,7 +491,16 @@ bool Uzond::save(std::ostream& out) const {
     for (short i = 0; i < size; i++) {
         out << Name << " " << Numer << " ";
         for (short j = 0; j < size_Of_arr_peopls; j++) {
-            out << people[j]->Name << " " << people[j]->Surname << " "
+
+            if (dynamic_cast<Children*>(people[j])) {
+                Children* children = dynamic_cast<Children*>(people[j]);
+                out << 0 << " " << children->Kindergarten_property<<" ";
+            }
+            else if (dynamic_cast<People*>(people[j])) {
+                People* people_ = dynamic_cast<People*>(people[j]);
+                out << 1 << " " << people_->Work_property<<" "<< people_->Work_experience_property<<" ";
+            }
+            out << people[j]->FullName->Name_property << " " << people[j]->FullName->Surname_property << " "
                 << people[j]->Year << " " << people[j]->piesel << " "
                 << people[j]->sex << " ";
         }
@@ -448,7 +509,7 @@ bool Uzond::save(std::ostream& out) const {
 
     return true;
 }
-*/
+
 
 void Uzond::show(Uzond* program) const
 {
@@ -465,17 +526,35 @@ void Uzond::show(Uzond* program) const
         cout << right << setw(3) << setfill('0') << i + 1 << setfill(' ') << " ";
         cout << MANIP << program[i].Name_property << " " << MANIP << program[i].Numer_property << endl;
         cout << endl;
-
         for (short j = 0; j < program[i].size_Of_arr_peopls_property; j++)
         {
-            if (dynamic_cast<People*>(program[i].people[j])) {
+            program[i].getPerson(j)->print(*program, j);
+
+
+
+           /* Users* person = program[i].getPerson(j);
+            if (dynamic_cast<Children*>(person)) {
+                Children* children = dynamic_cast<Children*>(person);
+                children->print(*program, j);
+            }
+            else if (dynamic_cast<People*>(person)) {
+                People* people = dynamic_cast<People*>(person);
+                people->print(*program, j);
+            }
+            else {
+                person->print(*program, j);
+            }
+            */
+
+           /* if (dynamic_cast<People*>(program[i].people[j])) {
                 People* p_people = dynamic_cast<People*>(program[i].people[j]);
-                p_people->print(*this, j);
+                p_people->print(*program, j);
             }
             else if (dynamic_cast<Children*>(program[i].people[j])) {
                 Children* p_children = dynamic_cast<Children*>(program[i].people[j]);
-                p_children->print(*this, j);
-            }
+                p_children->print(*program, j);
+            }*/
+            
             cout << endl;
         }
         cout << endl;
