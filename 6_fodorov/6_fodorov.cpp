@@ -38,7 +38,7 @@ int main()
 	ShowCursor(0);
 	do
 	{
-		program->show(program);
+		show(program);
 		switch (_getch())
 		{
 		case (113):

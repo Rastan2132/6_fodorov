@@ -110,7 +110,7 @@ class Uzond {
         __declspec(property(get = get_sex, put = set_sex)) string sex_property;
         __declspec(property(get = get_fullname, put = set_fullname)) Full_name* FullName_property;
 
-        virtual void print(Uzond program, short j) const;
+        virtual void print() const;
         
         friend class Uzond;
     };
@@ -132,7 +132,7 @@ class Uzond {
         __declspec(property(get = get_work, put = set_work)) string Work_property;
         __declspec(property(get = get_work_experience, put = set_work_experience)) string Work_experience_property;
 
-         void print(Uzond program, short j) const;
+         void print() const;
          People& operator=(const People& other) {
              if (this != &other) {
                  Users::operator=(other);
@@ -164,7 +164,7 @@ class Uzond {
             }
             return *this;
         }
-        void print(Uzond program, short j) const;
+        void print() const;
         friend class Uzond;
     };
 
@@ -198,7 +198,6 @@ public:
     Users* getPerson(int index) const;
     void removeUzond(Uzond*& program, short index);
     void removePerson(int index);
-    void show(Uzond* program) const;
     void addPerson(vector<string> arrOfNames, vector<string> arrOfSurnames, vector<string> arrOfNameKindergarten, vector<string> arrOfWork, bool flag);
 
     void edit(int index_1, string name, string surname, string year, string piesel, string sex) {
@@ -259,8 +258,6 @@ public:
         return *this;
     }
 
-    void show_ones(Uzond program, short i, short  j);
-
     _declspec(property(get = get_size_Of_arr_peopls, put = set_size_Of_arr_peopls)) int size_Of_arr_peopls_property;
     __declspec(property(get = get_size, put = set_size)) short size_property;
     __declspec(property(get = getName, put = setName)) string Name_property;
@@ -269,6 +266,7 @@ public:
 
 void error();
 
+void show(Uzond* program);
 Uzond* create(short size, short size_of_peopl, vector<string> arrOfNameUrzant, vector<string> arrOfNames, vector<string> arrOfSurnames, vector<string> arrOfNameKindergarten, vector<string> arrOfWork);
 void add(Uzond*& program, vector<string> arr_name, vector<string> arr_suname, vector<string>arr_of_name_urzant, vector<string> arrOfNameKindergarten, vector<string>arrOfWork);
 char* strstr_lower(char* str_a, char* str_b);

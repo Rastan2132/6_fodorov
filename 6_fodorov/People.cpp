@@ -1,9 +1,9 @@
 #include "Header.h"
 
 
-void Uzond::People::print(Uzond program, short j) const
+void Uzond::People::print() const
 {
-    Users::print(program, j);
+    Users::print();
     COLOR p;
     p.back = 0;
     p.text = 4;

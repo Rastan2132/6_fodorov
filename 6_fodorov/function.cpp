@@ -198,7 +198,7 @@ void edit(Uzond*& program, short index_1, short index_2)
 	string line;
 	string name = "", surname = " ", Year = " ", Piesel = " ", Sex = " ";
 	cout << "Wstepne dane:" << endl;
-	program[index_1].getPerson(index_2)->print(*program, index_2);
+	program[index_1].getPerson(index_2)->print();
 	bool valid_input = false;
 	cout << "Podaj Name Surname Year Pesel i sex: ";
 	while (!valid_input) {

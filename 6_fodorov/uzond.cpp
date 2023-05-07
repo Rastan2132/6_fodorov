@@ -471,54 +471,29 @@ bool Uzond::save(std::ostream& out) const {
 }
 
 
-void Uzond::show(Uzond* program) const
+void show(Uzond* program) 
 {
-    system("cls");
-    cout << "----------------------------------------------------------------------------------------------------\n";
-    cout << MENU << endl;
-    cout << "----------------------------------------------------------------------------------------------------\n";
-    cout << "					---=== UZOND BOOK ===--- your Uzond: " << program->size_property << endl;
-    cout << "----------------------------------------------------------------------------------------------------\n";
-    cout << stru << endl;
-    cout << "----------------------------------------------------------------------------------------------------\n";
-    for (short i = 0; i < program->size_property; i++)
-    {
-        cout << right << setw(3) << setfill('0') << i + 1 << setfill(' ') << " ";
-        cout << MANIP << program[i].Name_property << " " << MANIP << program[i].Numer_property << endl;
-        cout << endl;
-        for (short j = 0; j < program[i].size_Of_arr_peopls_property; j++)
+        system("cls");
+        cout << "----------------------------------------------------------------------------------------------------\n";
+        cout << MENU << endl;
+        cout << "----------------------------------------------------------------------------------------------------\n";
+        cout << "					---=== UZOND BOOK ===--- your Uzond: " << program->get_size() << endl;
+        cout << "----------------------------------------------------------------------------------------------------\n";
+        cout << stru << endl;
+        cout << "----------------------------------------------------------------------------------------------------\n";
+        for (short i = 0; i < program->get_size(); i++)
         {
-            program[i].getPerson(j)->print(*program, j);
+            cout << right << setw(3) << setfill('0') << i + 1 << setfill(' ') << " ";
+            cout << MANIP << program[i].getName() << " " << MANIP << program[i].getNumer() << endl;
+            cout << endl ;
+            for (short j = 0; j < program->get_size_Of_arr_peopls(); j++) {
 
-
-
-           /* Users* person = program[i].getPerson(j);
-            if (dynamic_cast<Children*>(person)) {
-                Children* children = dynamic_cast<Children*>(person);
-                children->print(*program, j);
+                cout << " " << right << setw(3) << setfill('0') << j + 1 << setfill(' ') << " ";
+                program[i].getPerson(j)->print();
+                cout << endl;
             }
-            else if (dynamic_cast<People*>(person)) {
-                People* people = dynamic_cast<People*>(person);
-                people->print(*program, j);
-            }
-            else {
-                person->print(*program, j);
-            }
-            */
-
-           /* if (dynamic_cast<People*>(program[i].people[j])) {
-                People* p_people = dynamic_cast<People*>(program[i].people[j]);
-                p_people->print(*program, j);
-            }
-            else if (dynamic_cast<Children*>(program[i].people[j])) {
-                Children* p_children = dynamic_cast<Children*>(program[i].people[j]);
-                p_children->print(*program, j);
-            }*/
-            
-            cout << endl;
+            cout << endl << endl;
         }
-        cout << endl;
-    }
-
+ 
     cout << endl << endl;
 }
