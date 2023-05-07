@@ -32,9 +32,12 @@ bool isalpha_r(unsigned char a)
 
 Uzond* create(short size, short size_of_peopl, vector<string> arrOfNameUrzant, vector<string> arrOfNames, vector<string> arrOfSurnames, vector<string> arrOfNameKindergarten, vector<string> arrOfWork) {
 	Uzond* arr = new Uzond[size];
+	
 	for (int i = 0; i < size; i++) {
 		arr[i].Name_property = arrOfNameUrzant[rand() % arrOfNameUrzant.size()];
 		arr[i].Numer_property = rand_data(_num);
+		arr[i].size_property = size;
+		arr[i].size_Of_arr_peopls_property = size_of_peopl;
 		arr[i].createPeopleArray( arrOfNames, arrOfSurnames, arrOfNameKindergarten, arrOfWork);
 
 	}
@@ -160,7 +163,7 @@ void dell(Uzond*& program)
 		if (num < 1 || num > program->size_property) {
 			error();
 		}
-		program->removeUzond(program, num);
+		removeUzond(program, num);
 		short size = program->size_property;
 		size--;
 		program->size_property = size;
@@ -329,4 +332,67 @@ vector<char> stringToArrChar(const string& str) {
 	vector<char> char_array(str.begin(), str.end());
 	char_array.push_back('\0');
 	return char_array;
+}
+
+void find(Uzond*& program)
+{
+	if (program == nullptr || program->get_size() == 0 || program->get_size_Of_arr_peopls() == 0)
+	{
+		error();
+		return;
+	}
+	char* keyword = new char[MAXLINE]; keyword[0] = '\0';
+
+	COORD enter, hat;
+
+	system("cls");
+	cout << " Esc - Wejscie" << endl << endl;
+	cout << "Szukaj: ";
+	enter = getCursorPosition();
+	cout << endl;
+	cout << stru << endl;
+	hat = getCursorPosition();
+
+	COORD temp_pos;
+	short len = 0;
+
+	//Вводим ключевое слово для поиска.
+	{
+		int i = 0;
+		do
+		{
+			if (!stredit(keyword, MAXLINE, enter.X, enter.Y, len, false)) return;
+			len = (short)strlen(keyword);
+
+			for (i = 0; i < len; i++)
+			{
+				if (!(isdigit_r(keyword[i]) || isalpha_r(keyword[i]))) break;
+			}
+
+		} while (i != len || len == 0);
+	}
+
+	// Выводим результаты. 
+
+	system("cls");
+	cout << " Esc - Wejscie" << endl << endl;
+	cout << "Szukaj: ";
+	enter = getCursorPosition();
+
+	cout << endl << stru << endl;
+	hat = getCursorPosition();
+	//Выводим новые результаты поиска
+
+
+	for (short l = 0; l < program->size_property; l++)
+	{
+		cout << "Rezultat o " << l + 1 << " linii" << endl;
+		for (short i = 0; i < program->size_Of_arr_peopls_property; i++)
+		{
+			program[l].getPerson(i)->find(keyword);
+		}
+		cout << endl;
+	}
+	system("pause");
+	delete[] keyword; keyword = nullptr;
 }

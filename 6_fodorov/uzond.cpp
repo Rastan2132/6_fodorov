@@ -101,13 +101,13 @@ Uzond::Users* Uzond::getPerson(int index) const {
     }
     return people[index];
 }*/
-void Uzond::removeUzond(Uzond*& program, short index) {
-    if (index < 0 || index >= size) {
+void removeUzond(Uzond*& program, short index) {
+    if (index < 0 || index >= program->size_property) {
         return;
     }
-    Uzond* new_program = new Uzond[size - 1];
+    Uzond* new_program = new Uzond[program->size_property - 1];
     int j = 0;
-    for (int i = 0; i < size; i++) {
+    for (int i = 0; i < program->size_property; i++) {
         if (i != index) {
             new_program[j] = program[i];
             j++;
@@ -172,228 +172,108 @@ Uzond::Users* Uzond::getPerson(int index) const {
 
 
 
-void Uzond::sort(Uzond*& program)
+void Uzond::sort(short flag)
 {
-    cout << endl << "Wybiesz:\n1 - posortowac za Name\n2 - posortowac za Surname\n3 - posortowac za sex\n4 - posortowac za piesel\n5 - posortowac za Year\nQ - Wyj\n";
-    cout << endl;
-    switch (_getch())
+
+    switch (flag)
     {
-    case '1':
-        for (short l = 0; l < program->size_property; l++)
-        {
-            for (short i = 0; i < program->size_Of_arr_peopls_property; i++) {
-                for (short j = i + 1; j < program->size_Of_arr_peopls_property; j++) {
-                    if (program[l].getPeople()[i]->FullName->Name_property.compare(program[l].getPeople()[j]->FullName->Name_property) > 0) {
-                        std::string temp_name = program[l].getPeople()[i]->FullName_property->Name_property;
-                        program[l].getPeople()[i]->FullName_property->Name_property = program[l].getPeople()[j]->FullName->Name_property;
-                        program[l].getPeople()[j]->FullName->Name_property = temp_name;
+    case 1:
+        for (short i = 0; i < size_Of_arr_peopls; i++) {
+            for (short j = i + 1; j < size_Of_arr_peopls; j++) {
+                if (people[i]->FullName->Name_property.compare(people[j]->FullName->Name_property) > 0) {
+                    std::string temp_name = people[i]->FullName_property->Name_property;
+                    people[i]->FullName_property->Name_property = people[j]->FullName->Name_property;
+                    people[j]->FullName->Name_property = temp_name;
 
-                        std::string temp_surname = program[l].getPeople()[i]->FullName->Surname_property;
-                        program[l].getPeople()[i]->FullName->Surname_property = program[l].getPeople()[j]->FullName->Surname_property;
-                        program[l].getPeople()[j]->FullName->Surname_property = temp_surname;
-
-                        swap(program[l].getPeople()[i]->sex, program[l].getPeople()[j]->sex);
-                        swap(program[l].getPeople()[i]->piesel, program[l].getPeople()[j]->piesel);
-                        swap(program[l].getPeople()[i]->Year, program[l].getPeople()[j]->Year);
-                    }
+                    std::string temp_surname = people[i]->FullName->Surname_property;
+                    people[i]->FullName->Surname_property = people[j]->FullName->Surname_property;
+                    people[j]->FullName->Surname_property = temp_surname;
+                    swap(people[i]->sex, people[j]->sex);
+                    swap(people[i]->piesel, people[j]->piesel);
+                    swap(people[i]->Year, people[j]->Year);
                 }
             }
         }
-        cout << endl << "Sorted" << endl;
-        system("pause");
         break;
-    case '2':
-        for (short l = 0; l < program->size_property; l++)
-        {
-            for (short i = 0; i < program->size_Of_arr_peopls_property; i++) {
-                for (short j = i + 1; j < program->size_Of_arr_peopls_property; j++) {
-                    if (program[l].getPeople()[i]->FullName->Surname_property.compare(program[l].getPeople()[j]->FullName->Surname_property) > 0) {
-                        std::string temp_name = program[l].getPeople()[i]->FullName_property->Name_property;
-                        program[l].getPeople()[i]->FullName_property->Name_property = program[l].getPeople()[j]->FullName->Name_property;
-                        program[l].getPeople()[j]->FullName->Name_property = temp_name;
+    case 2:
+        for (short i = 0; i < size_Of_arr_peopls; i++) {
+            for (short j = i + 1; j < size_Of_arr_peopls; j++) {
+                if (people[i]->FullName->Surname_property.compare(people[j]->FullName->Surname_property) > 0) {
+                    std::string temp_name = people[i]->FullName_property->Name_property;
+                    people[i]->FullName_property->Name_property = people[j]->FullName->Name_property;
+                    people[j]->FullName->Name_property = temp_name;
 
-                        std::string temp_surname = program[l].getPeople()[i]->FullName->Surname_property;
-                        program[l].getPeople()[i]->FullName->Surname_property = program[l].getPeople()[j]->FullName->Surname_property;
-                        program[l].getPeople()[j]->FullName->Surname_property = temp_surname;
-
-                        swap(program[l].getPeople()[i]->sex, program[l].getPeople()[j]->sex);
-                        swap(program[l].getPeople()[i]->piesel, program[l].getPeople()[j]->piesel);
-                        swap(program[l].getPeople()[i]->Year, program[l].getPeople()[j]->Year);
-                    }
+                    std::string temp_surname = people[i]->FullName->Surname_property;
+                    people[i]->FullName->Surname_property = people[j]->FullName->Surname_property;
+                    people[j]->FullName->Surname_property = temp_surname;
+                    swap(people[i]->sex, people[j]->sex);
+                    swap(people[i]->piesel, people[j]->piesel);
+                    swap(people[i]->Year, people[j]->Year);
                 }
             }
         }
-        cout << endl << "Sorted" << endl;
-        system("pause");
+
         break;
-    case '3':
-        for (short l = 0; l < program->size_property; l++)
-        {
-            for (short i = 0; i < program->size_Of_arr_peopls_property; i++) {
-                for (short j = i + 1; j < program->size_Of_arr_peopls_property; j++) {
-                    if (program[l].getPeople()[i]->sex.compare(program[l].getPeople()[j]->sex) > 0) {
-                        std::string temp_name = program[l].getPeople()[i]->FullName_property->Name_property;
-                        program[l].getPeople()[i]->FullName_property->Name_property = program[l].getPeople()[j]->FullName->Name_property;
-                        program[l].getPeople()[j]->FullName->Name_property = temp_name;
+    case 3:
+        for (short i = 0; i < size_Of_arr_peopls; i++) {
+            for (short j = i + 1; j < size_Of_arr_peopls; j++) {
+                if (people[i]->sex.compare(people[j]->sex) > 0) {
+                    std::string temp_name = people[i]->FullName_property->Name_property;
+                    people[i]->FullName_property->Name_property = people[j]->FullName->Name_property;
+                    people[j]->FullName->Name_property = temp_name;
 
-                        std::string temp_surname = program[l].getPeople()[i]->FullName->Surname_property;
-                        program[l].getPeople()[i]->FullName->Surname_property = program[l].getPeople()[j]->FullName->Surname_property;
-                        program[l].getPeople()[j]->FullName->Surname_property = temp_surname;
-
-                        swap(program[l].getPeople()[i]->sex, program[l].getPeople()[j]->sex);
-                        swap(program[l].getPeople()[i]->piesel, program[l].getPeople()[j]->piesel);
-                        swap(program[l].getPeople()[i]->Year, program[l].getPeople()[j]->Year);
-                    }
+                    std::string temp_surname = people[i]->FullName->Surname_property;
+                    people[i]->FullName->Surname_property = people[j]->FullName->Surname_property;
+                    people[j]->FullName->Surname_property = temp_surname;
+                    swap(people[i]->sex, people[j]->sex);
+                    swap(people[i]->piesel, people[j]->piesel);
+                    swap(people[i]->Year, people[j]->Year);
                 }
             }
         }
-        cout << endl << "Sorted" << endl;
-        system("pause");
         break;
-    case '4':
-        for (short l = 0; l < program->size_property; l++)
+    case 4:
+        for (short i = 0; i < size_Of_arr_peopls; i++)
         {
-            for (short i = 0; i < program->size_Of_arr_peopls_property; i++) {
-                for (short j = i + 1; j < program->size_Of_arr_peopls_property; j++) {
-                    if (program[l].getPeople()[i]->piesel.compare(program[l].getPeople()[j]->piesel) > 0) {
-                        std::string temp_name = program[l].getPeople()[i]->FullName_property->Name_property;
-                        program[l].getPeople()[i]->FullName_property->Name_property = program[l].getPeople()[j]->FullName->Name_property;
-                        program[l].getPeople()[j]->FullName->Name_property = temp_name;
-
-                        std::string temp_surname = program[l].getPeople()[i]->FullName->Surname_property;
-                        program[l].getPeople()[i]->FullName->Surname_property = program[l].getPeople()[j]->FullName->Surname_property;
-                        program[l].getPeople()[j]->FullName->Surname_property = temp_surname;
-
-                        swap(program[l].getPeople()[i]->sex, program[l].getPeople()[j]->sex);
-                        swap(program[l].getPeople()[i]->piesel, program[l].getPeople()[j]->piesel);
-                        swap(program[l].getPeople()[i]->Year, program[l].getPeople()[j]->Year);
-                    }
-                }
-            }
-        }
-        cout << endl << "Sorted" << endl;
-        system("pause");
-        break;
-    case '5':
-        for (short l = 0; l < program->get_size(); l++)
-        {
-            for (short i = 0; i < program->size_Of_arr_peopls_property; i++) {
-                for (short j = i + 1; j < program->size_Of_arr_peopls_property; j++) {
-                    if (program[l].getPeople()[i]->Year.compare(program[l].getPeople()[j]->Year) > 0) {
-                        std::string temp_name = program[l].getPeople()[i]->FullName_property->Name_property;
-                        program[l].getPeople()[i]->FullName_property->Name_property = program[l].getPeople()[j]->FullName->Name_property;
-                        program[l].getPeople()[j]->FullName->Name_property = temp_name;
-
-                        std::string temp_surname = program[l].getPeople()[i]->FullName->Surname_property;
-                        program[l].getPeople()[i]->FullName->Surname_property = program[l].getPeople()[j]->FullName->Surname_property;
-                        program[l].getPeople()[j]->FullName->Surname_property = temp_surname;
-
-                        swap(program[l].getPeople()[i]->sex, program[l].getPeople()[j]->sex);
-                        swap(program[l].getPeople()[i]->piesel, program[l].getPeople()[j]->piesel);
-                        swap(program[l].getPeople()[i]->Year, program[l].getPeople()[j]->Year);
-                    }
-                }
-            }
-        }
-        cout << endl << "Sorted" << endl;
-        system("pause");
-        break;
-    case 'q':
-    case 'Q':
-        break;
-    default:
-    {
-        cout << endl << "Press 1, 2 or Q " << endl;
-        system("pause");
-    }
-    }
-}
-
-void Uzond::find(Uzond*& program)
-{
-    if (program == nullptr || program->size_property == 0 || program->size_Of_arr_peopls_property == 0)
-    {
-        error();
-        return;
-    }
-    char* keyword = new char[MAXLINE]; keyword[0] = '\0';
-
-    COORD enter, hat;
-
-    system("cls");
-    cout << " Esc - Wejscie" << endl << endl;
-    cout << "Szukaj: ";
-    enter = getCursorPosition();
-
-    cout << endl << " #   " stru << endl;
-    hat = getCursorPosition();
-
-    COORD temp_pos;
-    short len = 0;
-
-    do
-    {
-        //Вводим ключевое слово для поиска.
-        {
-            int i = 0;
-            do
+            for (short j = i + 1; j < size_Of_arr_peopls; j++)
             {
-                if (!stredit(keyword, MAXLINE, enter.X, enter.Y, len, false)) return;
-                len = (short)strlen(keyword);
-
-                for (i = 0; i < len; i++)
+                if (people[i]->piesel.compare(people[j]->piesel) > 0)
                 {
-                    if (!(isdigit_r(keyword[i]) || isalpha_r(keyword[i]))) break;
-                }
+                    std::string temp_name = people[i]->FullName_property->Name_property;
+                    people[i]->FullName_property->Name_property = people[j]->FullName->Name_property;
+                    people[j]->FullName->Name_property = temp_name;
 
-            } while (i != len || len == 0);
-        }
-
-        // Выводим результаты. 
-
-        setCursorPosition(hat.X, hat.Y);
-
-        //Очищаем предыдущие результаты поиска.
-        for (int i = 0; i < size; i++)
-        {
-            temp_pos = getCursorPosition();
-            Clear(temp_pos.X, temp_pos.Y + i);
-        }
-        setCursorPosition(hat.X, hat.Y);
-        system("cls");
-        cout << " Esc - Wejscie" << endl << endl;
-        cout << "Szukaj: ";
-        enter = getCursorPosition();
-
-        cout << endl << " #   " stru << endl;
-        hat = getCursorPosition();
-        //Выводим новые результаты поиска
-        for (short l = 0; l < size; l++)
-        {
-            cout << "Rezultat o " << l + 1 << " linii" << endl;
-            for (short i = 0; i < program->size_Of_arr_peopls_property; i++)
-            {
-                if (strstr_lower(stringToArrChar(program[l].getPeople()[i]->FullName->Name_property).data(), keyword)
-                    || strstr_lower(stringToArrChar(program[l].getPeople()[i]->FullName->Surname_property).data(), keyword)
-                    || strstr_lower(stringToArrChar(program[l].getPeople()[i]->piesel).data(), keyword)
-                    || strstr_lower(stringToArrChar(program[l].getPeople()[i]->Year).data(), keyword)
-                    || strstr_lower(stringToArrChar(program[l].getPeople()[i]->sex).data(), keyword))
-                {
-                    cout << left << setw(3) << i + 1 << "  ";
-                    print_find(stringToArrChar(program[l].getPeople()[i]->FullName->Name_property).data(), MAXLINE, keyword, MAXLINE, Red);
-                    print_find(stringToArrChar(program[l].getPeople()[i]->FullName->Surname_property).data(), MAXLINE, keyword, MAXLINE, Red);
-                    print_find(stringToArrChar(program[l].getPeople()[i]->Year).data(), MAXLINE, keyword, MAXLINE, Red);
-                    print_find(stringToArrChar(program[l].getPeople()[i]->piesel).data(), MAXLINE, keyword, MAXLINE, Red);
-                    print_find(stringToArrChar(program[l].getPeople()[i]->sex).data(), MAXLINE, keyword, MAXLINE, Red);
-
-                    cout << endl;
+                    std::string temp_surname = people[i]->FullName->Surname_property;
+                    people[i]->FullName->Surname_property = people[j]->FullName->Surname_property;
+                    people[j]->FullName->Surname_property = temp_surname;
+                    swap(people[i]->sex, people[j]->sex);
+                    swap(people[i]->piesel, people[j]->piesel);
+                    swap(people[i]->Year, people[j]->Year);
                 }
             }
-            cout << endl;
         }
-    } while (true); //Пока не нажата Esc.
+        break;
+    case 5:
 
-    delete[] keyword; keyword = nullptr;
+        for (short i = 0; i < size_Of_arr_peopls; i++) {
+            for (short j = i + 1; j < size_Of_arr_peopls; j++) {
+                if (people[i]->Year.compare(people[j]->Year) > 0) {
+                    std::string temp_name = people[i]->FullName_property->Name_property;
+                    people[i]->FullName_property->Name_property = people[j]->FullName->Name_property;
+                    people[j]->FullName->Name_property = temp_name;
+
+                    std::string temp_surname = people[i]->FullName->Surname_property;
+                    people[i]->FullName->Surname_property = people[j]->FullName->Surname_property;
+                    people[j]->FullName->Surname_property = temp_surname;
+                    swap(people[i]->sex, people[j]->sex);
+                    swap(people[i]->piesel, people[j]->piesel);
+                    swap(people[i]->Year, people[j]->Year);
+                }
+            }
+        }
+        break;
+
+    }
 }
 
 
@@ -412,12 +292,12 @@ bool Uzond::initForFile(std::istream& in) {
                 in >> flag;
                 if (flag ==0 ) {
                     string k;
-                    in >>k >> name >> surname >> year >> pesel >> sex;
+                    in >> name >> surname >> year >> pesel >> sex >> k;
                     people_n[j] = new Children(name, surname, year, pesel, sex, k);
                 }
                 else{
                     string Work_property, Work_experience_property ;
-                    in >> Work_property >> Work_experience_property >> name >> surname >> year >> pesel >> sex;
+                    in >> name >> surname >> year >> pesel >> sex >> Work_property >> Work_experience_property;
                     people_n[j] = new People(name, surname, year, pesel, sex, Work_property, Work_experience_property);
                 }
                
@@ -445,23 +325,14 @@ std::ostream& operator<<(std::ostream& out, const Uzond& program) {
     return out;
 }
 bool Uzond::save(std::ostream& out) const {
-    out << size << " " << size_Of_arr_peopls << " ";
+    
 
     for (short i = 0; i < size; i++) {
         out << Name << " " << Numer << " ";
         for (short j = 0; j < size_Of_arr_peopls; j++) {
 
-            if (dynamic_cast<Children*>(people[j])) {
-                Children* children = dynamic_cast<Children*>(people[j]);
-                out << 0 << " " << children->Kindergarten_property<<" ";
-            }
-            else if (dynamic_cast<People*>(people[j])) {
-                People* people_ = dynamic_cast<People*>(people[j]);
-                out << 1 << " " << people_->Work_property<<" "<< people_->Work_experience_property<<" ";
-            }
-            out << people[j]->FullName->Name_property << " " << people[j]->FullName->Surname_property << " "
-                << people[j]->Year << " " << people[j]->piesel << " "
-                << people[j]->sex << " ";
+            people[j]->save(out);
+           
         }
         out << std::endl;
     }

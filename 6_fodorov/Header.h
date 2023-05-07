@@ -111,6 +111,8 @@ class Uzond {
         __declspec(property(get = get_fullname, put = set_fullname)) Full_name* FullName_property;
 
         virtual void print() const;
+        virtual void save(std::ostream& out) const;
+        virtual void find(char* keyword) const;
         
         friend class Uzond;
     };
@@ -133,6 +135,9 @@ class Uzond {
         __declspec(property(get = get_work_experience, put = set_work_experience)) string Work_experience_property;
 
          void print() const;
+         void save(std::ostream& out) const;
+         void find(char* keyword) const;
+
          People& operator=(const People& other) {
              if (this != &other) {
                  Users::operator=(other);
@@ -165,6 +170,8 @@ class Uzond {
             return *this;
         }
         void print() const;
+        void save(std::ostream& out) const;
+        void find(char* keyword) const;
         friend class Uzond;
     };
 
@@ -196,7 +203,7 @@ public:
 
     void createPeopleArray(vector<string> arrOfNames, vector<string> arrOfSurnames, vector<string> arrOfNameKindergarten, vector<string> arrOfWork);
     Users* getPerson(int index) const;
-    void removeUzond(Uzond*& program, short index);
+   
     void removePerson(int index);
     void addPerson(vector<string> arrOfNames, vector<string> arrOfSurnames, vector<string> arrOfNameKindergarten, vector<string> arrOfWork, bool flag);
 
@@ -226,8 +233,8 @@ public:
     }
 
     bool initForFile(std::istream& in);
-    void sort(Uzond*& program);
-    void find(Uzond*& program);
+    void sort(short flag);
+    void find(char* keyword);
     bool save(std::ostream& out) const;
     Users& operator[](int index) {
         return *people[index];
@@ -276,6 +283,9 @@ vector<char> stringToArrChar(const string& str);
 void edit(Uzond*& program, short index_1, short index_2);
 void dell(Uzond*& program);
 bool chek_file(string file);
+
+void find(Uzond*& program);
+void removeUzond(Uzond*& program, short index);
 
 COORD getCursorPosition(void);
 void Clear(int x, int y, long cnt = 100);

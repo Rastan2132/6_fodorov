@@ -12,6 +12,7 @@ int main()
 	vector<string>NAMES_of_Uzond = { "Urzad_Pracy","Urzad_Spraw","Urzad_Skarbowy","Urzad_s._cywilnego" };
 	vector<string> arrOfNameKindergarten = { "Krasnoludek", "Sloneczko", "Bajka", "Promyczek" };
 	vector<string> arrOfWork = { "nauczyciel", "lekarz", "informatyk", "sprzedawca", "prawnik" };
+
 	if (chek_file("Uzonds.txt") == 0)
 	{
 		short size = rand() % 10 + 1;
@@ -60,15 +61,46 @@ int main()
 			} while (true);
 			edit(program, urz_num - 1, p_num - 1);
 			break;
-		case (115):
-			program->sort(program);
+		case (115): {
+			short flag = 0;
+			cout << endl << "Wybiesz:\n1 - posortowac za Name\n2 - posortowac za Surname\n3 - posortowac za sex\n4 - posortowac za piesel\n5 - posortowac za Year\n";
+			cout << endl;
+			switch (_getch())
+			{
+			case (49):
+				flag = 1;
+				break;
+			case (50):
+				flag = 2;
+				break;
+			case (51):
+				flag = 3;
+				break;
+			case (52):
+				flag = 4;
+				break;
+			case (53):
+				flag = 5;
+				break;
+
+			default:
+			{
+				cout << "error" << endl;
+				break;
+			}
+
+			}
+			for (short l = 0; l < program->get_size(); l++)
+				program[l].sort(flag);
+		}
 			break;
 		case (121):
-			program->find(program);
+			find(program);
 			break;
 		}
 	} while (work);
 	std::ofstream  file("Uzonds.txt");
+	file << program->size_property << " " << program->size_Of_arr_peopls_property << " ";
 	for (short i = 0; i < program->size_property; i++) {
 		file << program[i];
 	}
