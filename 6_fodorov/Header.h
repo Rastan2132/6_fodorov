@@ -226,7 +226,7 @@ public:
         people = new_people;
     }
 
-    bool initForFile(Uzond*& program);
+    bool initForFile(std::istream& in);
     void sort(Uzond*& program);
     void find(Uzond*& program);
     bool save(std::ostream& out) const;

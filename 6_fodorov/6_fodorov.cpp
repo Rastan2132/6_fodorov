@@ -3,30 +3,7 @@
 int main()
 {
 	bool work = 1;
-	short urz_num, p_num;
-	cout << "Enter Your name and surname: ";
-	showcursor(1);
-	string line, name, surname;
-	getline(cin, line);
-	name = line.substr(0, line.find_first_of(";"));
-	line = line.substr(line.find_first_of(";") + 1);
-	surname = line.substr(0, line.find_first_of(";"));
-
-	system("cls");
-	static Full_name autor(name, surname);
-	setCursorPosition(30, 10);
-	COLOR Witamy;
-	Witamy.back = 0;
-	Witamy.text = 2;
-	SetColor(Witamy);
-	cout << "Witamy, " << autor.Name_property << " " << autor.Surname_property<<" !!!";
-	setCursorPosition(0, 20);
-	Witamy.back = 0;
-	Witamy.text = 15;
-	SetColor(Witamy);
-	system("pause");
-	setCursorPosition(0, 0);
-	showcursor(0);
+	short urz_num, p_num;;
 
 	Uzond* program{ nullptr };
 

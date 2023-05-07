@@ -398,60 +398,46 @@ void Uzond::find(Uzond*& program)
 }
 
 
-bool Uzond::initForFile(Uzond*& program) {
-    ifstream in("Uzonds.txt");
-    if (!in.is_open()) {
-        program->size_property = -1; // if error *size = -1;
-        return false;
-    }
-    short size, size_of_peopl;
-    in >> size >> size_of_peopl;
-
-
-    Uzond* program_n = new Uzond[size];
-    for (int i = 0; i < size; i++) {
-        program_n[i].people = nullptr;
+bool Uzond::initForFile(std::istream& in) {
+   
         string name_u, numer;
         
         in >> name_u >> numer;
-        program_n[i].Name = name_u;
-        program_n[i].Numer = numer;
+        Name = name_u;
+        Numer = numer;
         int flag = 0;
         string name, surname, year, pesel, sex;
-        if (size_of_peopl > 0) {
-            Users** people = new Users * [size_of_peopl];
-            for (int j = 0; j < size_of_peopl; j++) {
-
+        if (size_Of_arr_peopls > 0) {
+            Users** people_n = new Users * [size_Of_arr_peopls];
+            for (int j = 0; j < size_Of_arr_peopls; j++) {
                 in >> flag;
                 if (flag ==0 ) {
                     string k;
                     in >>k >> name >> surname >> year >> pesel >> sex;
-                    people[j] = new Children(name, surname, year, pesel, sex, k); 
+                    people_n[j] = new Children(name, surname, year, pesel, sex, k);
                 }
                 else{
                     string Work_property, Work_experience_property ;
                     in >> Work_property >> Work_experience_property >> name >> surname >> year >> pesel >> sex;
-                    people[j] = new People(name, surname, year, pesel, sex, Work_property, Work_experience_property);
+                    people_n[j] = new People(name, surname, year, pesel, sex, Work_property, Work_experience_property);
                 }
                
             }
-            program_n[i].people = people;
+           people = people_n;
         }
-    }
-
-    program = program_n;
-    for (short i = 0; i < size; i++)
-        program[i].size_property = size;
-    for (short i = 0; i < size_of_peopl; i++)
-        program[i].size_Of_arr_peopls_property = size_of_peopl;
-
-    in.close();
     return true;
 }
 
 
 std::istream& operator>>(Uzond*& program, std::istream& in) {
-    program->initForFile(program);
+    short size, size_of_peopl;
+    in >> size >> size_of_peopl;
+    program = new Uzond[size];
+    for (int i = 0; i < size; i++) {
+        program[i].size_property = size;
+        program[i].size_Of_arr_peopls_property = size_of_peopl;
+        program[i].initForFile(in);
+    }
     return in;
 }
 
