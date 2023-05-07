@@ -35,7 +35,7 @@ Uzond* create(short size, short size_of_peopl, vector<string> arrOfNameUrzant, v
 	for (int i = 0; i < size; i++) {
 		arr[i].Name_property = arrOfNameUrzant[rand() % arrOfNameUrzant.size()];
 		arr[i].Numer_property = rand_data(_num);
-		arr[i].createPeopleArray(size_of_peopl, arrOfNames, arrOfSurnames, arrOfNameKindergarten, arrOfWork);
+		arr[i].createPeopleArray( arrOfNames, arrOfSurnames, arrOfNameKindergarten, arrOfWork);
 
 	}
 	return arr;
@@ -108,7 +108,9 @@ void add(Uzond*& program, vector<string> arr_name, vector<string> arr_surname, v
 		}
 		program_n[size - 1].Name_property = arr_of_name_urzant[rand() % arr_of_name_urzant.size()];
 		program_n[size - 1].Numer_property = rand_data(_num);
-		program_n[size - 1].createPeopleArray(program->get_size_Of_arr_peopls(), arr_name, arr_surname, arrOfNameKindergarten, arrOfWork);
+		program_n[size - 1].size_property = size;
+		program_n[size - 1].size_Of_arr_peopls_property = program_n->size_Of_arr_peopls_property;
+		program_n[size - 1].createPeopleArray( arr_name, arr_surname, arrOfNameKindergarten, arrOfWork);
 		delete[] program;
 
 		program = program_n;

@@ -62,7 +62,7 @@ void Uzond::setPeople(Users** people_) {
     }
 }
 */
-void Uzond::createPeopleArray(int size_of_people, vector<string> arrOfNames, vector<string> arrOfSurnames, vector<string> arrOfNameKindergarten, vector<string> arrOfWork) {
+void Uzond::createPeopleArray(vector<string> arrOfNames, vector<string> arrOfSurnames, vector<string> arrOfNameKindergarten, vector<string> arrOfWork) {
     if (people != nullptr) {
         for (int i = 0; i < size_Of_arr_peopls; i++) {
             delete people[i];
@@ -70,11 +70,10 @@ void Uzond::createPeopleArray(int size_of_people, vector<string> arrOfNames, vec
         delete[] people;
         people = nullptr;
     }
-    size_Of_arr_peopls = size_of_people;
-    if (size_of_people > 0) {
-        people = new Users * [size_of_people];
+    if (size_Of_arr_peopls > 0) {
+        people = new Users * [size_Of_arr_peopls];
         
-        for (int i = 0; i < size_of_people; i++) {
+        for (int i = 0; i < size_Of_arr_peopls; i++) {
             bool is_child = rand() % 2;
             string sex = rand_data(_sex);
             string name = arrOfNames[rand_data(sex)];

@@ -194,7 +194,7 @@ public:
     void setNumer(string Numer_) { Numer = Numer_; }
     string getNumer() const { return Numer; }
 
-    void createPeopleArray(int size_of_people, vector<string> arrOfNames, vector<string> arrOfSurnames, vector<string> arrOfNameKindergarten, vector<string> arrOfWork);
+    void createPeopleArray(vector<string> arrOfNames, vector<string> arrOfSurnames, vector<string> arrOfNameKindergarten, vector<string> arrOfWork);
     Users* getPerson(int index) const;
     void removeUzond(Uzond*& program, short index);
     void removePerson(int index);
