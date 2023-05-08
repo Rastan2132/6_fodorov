@@ -358,7 +358,7 @@ void show(Uzond* program)
             cout << endl ;
             for (short j = 0; j < program->get_size_Of_arr_peopls(); j++) {
 
-                cout << " " << right << setw(3) << setfill('0') << j + 1 << setfill(' ') << " ";
+                cout << "   " << right << setw(3) << setfill('0') << j + 1 << setfill(' ') << " ";
                 program[i].getPerson(j)->print();
                 cout << endl;
             }

@@ -110,6 +110,7 @@ class Uzond {
         __declspec(property(get = get_sex, put = set_sex)) string sex_property;
         __declspec(property(get = get_fullname, put = set_fullname)) Full_name* FullName_property;
 
+        virtual void edit();
         virtual void print() const;
         virtual void save(std::ostream& out) const;
         virtual void find(char* keyword) const;
@@ -134,6 +135,7 @@ class Uzond {
         __declspec(property(get = get_work, put = set_work)) string Work_property;
         __declspec(property(get = get_work_experience, put = set_work_experience)) string Work_experience_property;
 
+         void edit();
          void print() const;
          void save(std::ostream& out) const;
          void find(char* keyword) const;
@@ -169,6 +171,7 @@ class Uzond {
             }
             return *this;
         }
+        void edit();
         void print() const;
         void save(std::ostream& out) const;
         void find(char* keyword) const;
@@ -207,31 +210,7 @@ public:
     void removePerson(int index);
     void addPerson(vector<string> arrOfNames, vector<string> arrOfSurnames, vector<string> arrOfNameKindergarten, vector<string> arrOfWork, bool flag);
 
-    void edit(int index_1, string name, string surname, string year, string piesel, string sex) {
-
-        Children* person = new Children(name, surname, year, piesel, sex);
-        Users** new_people = new Users * [size_Of_arr_peopls];
-        for (int i = 0; i < size_Of_arr_peopls; i++) {
-            new_people[i] = people[i];
-        }
-        new_people[index_1] = person;
-
-        delete[] people;
-        people = new_people;
-    }
-    void edit(int index_1, string name, string surname, string year, string piesel, string sex, string work , string Work_e) {
-
-        People* person = new People(name, surname, year, piesel, sex, work , Work_e);
-        Users** new_people = new Users * [size_Of_arr_peopls];
-        for (int i = 0; i < size_Of_arr_peopls; i++) {
-            new_people[i] = people[i];
-        }
-        new_people[index_1] = person;
-
-        delete[] people;
-        people = new_people;
-    }
-
+   
     bool initForFile(std::istream& in);
     void sort(short flag);
     void find(char* keyword);
@@ -239,31 +218,7 @@ public:
     Users& operator[](int index) {
         return *people[index];
     }
-    Uzond& operator=(const Uzond& other) {
-        if (this != &other) {
-            // копируем обычные поля
-            Name = other.Name;
-            Numer = other.Numer;
-            size_Of_arr_peopls = other.size_Of_arr_peopls;
-            size = other.size;
-
-            
-            delete[] people;
-            people = new Users * [size_Of_arr_peopls];
-            for (int i = 0; i < size_Of_arr_peopls; i++) {
-                if (dynamic_cast<People*>(other.people[i])) {
-                    people[i] = new People(*dynamic_cast<People*>(other.people[i]));
-                }
-                else if (dynamic_cast<Children*>(other.people[i])) {
-                    people[i] = new Children(*dynamic_cast<Children*>(other.people[i]));
-                }
-                else {
-                    people[i] = new Users(*other.people[i]);
-                }
-            }
-        }
-        return *this;
-    }
+    Uzond& operator=(const Uzond& other);
 
     _declspec(property(get = get_size_Of_arr_peopls, put = set_size_Of_arr_peopls)) int size_Of_arr_peopls_property;
     __declspec(property(get = get_size, put = set_size)) short size_property;

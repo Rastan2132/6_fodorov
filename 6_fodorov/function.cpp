@@ -200,68 +200,11 @@ void edit(Uzond*& program, short index_1, short index_2)
 	{
 		error();
 	}
-	string line;
-	string name = "", surname = " ", Year = " ", Piesel = " ", Sex = " ";
+	
 	cout << "Wstepne dane:" << endl;
 	program[index_1].getPerson(index_2)->print();
-	bool valid_input = false;
 	cout << "Podaj Name Surname Year Pesel i sex: ";
-	while (!valid_input) {
-
-		string line;
-
-		getline(cin, line);
-		name = line.substr(0, line.find_first_of(";"));
-		line = line.substr(line.find_first_of(";") + 1);
-		surname = line.substr(0, line.find_first_of(";"));
-		line = line.substr(line.find_first_of(";") + 1);
-		Year = line.substr(0, line.find_first_of(";"));
-		line = line.substr(line.find_first_of(";") + 1);
-		Piesel = line.substr(0, line.find_first_of(";"));
-		line = line.substr(line.find_first_of(";") + 1);
-		Sex = line.substr(0, line.find_first_of(";"));
-
-		bool name_is_alpha = true, surname_is_alpha = true, sex_is_alpha = true, Year_is_digit = true, Piesel_is_digit = Piesel.size() == 12;
-		if (line.size() > 1) {
-			for (char c : name)
-				if (!isalpha_r(c)) {
-					name_is_alpha = false;
-					break;
-				}
-			for (char c : surname)
-				if (!isalpha_r(c)) {
-					surname_is_alpha = false;
-					break;
-				}
-			for (char c : Sex)
-				if (!isalpha_r(c)) {
-					sex_is_alpha = false;
-					break;
-				}
-			for (char c : Year) {
-				if (!isdigit_r(c)) {
-					Year_is_digit = false;
-					break;
-				}
-			}
-			for (char c : Piesel)
-				if (!isdigit_r(c)) {
-					Piesel_is_digit = false;
-					break;
-				}
-
-			if (!name_is_alpha || !surname_is_alpha || !sex_is_alpha || !Year_is_digit || !Piesel_is_digit)
-			{
-				error();
-			}
-			else {
-				
-					program[index_1].edit(index_2, name, surname, Year, Piesel, Sex);
-				
-				valid_input = true;
-			}
-		}
-	}
+	program[index_1].getPerson(index_2)->edit();
 	ShowCursor(0);
 }
 
@@ -308,6 +251,31 @@ void print_find(char* str, short str_size, char* keyword, short key_size, int te
 	showcursor(true);
 }
 
+Uzond& Uzond::operator=(const Uzond& other) {
+	if (this != &other) {
+		// копируем обычные поля
+		Name = other.Name;
+		Numer = other.Numer;
+		size_Of_arr_peopls = other.size_Of_arr_peopls;
+		size = other.size;
+
+
+		delete[] people;
+		people = new Users * [size_Of_arr_peopls];
+		for (int i = 0; i < size_Of_arr_peopls; i++) {
+			if (dynamic_cast<People*>(other.people[i])) {
+				people[i] = new People(*dynamic_cast<People*>(other.people[i]));
+			}
+			else if (dynamic_cast<Children*>(other.people[i])) {
+				people[i] = new Children(*dynamic_cast<Children*>(other.people[i]));
+			}
+			else {
+				people[i] = new Users(*other.people[i]);
+			}
+		}
+	}
+	return *this;
+}
 char* strstr_lower(char* str_a, char* str_b)
 {
 
